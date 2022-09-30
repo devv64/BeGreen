@@ -6,9 +6,11 @@ import ChatRoom from './components/ChatRoom';
 import firebaseConfig from './firebase';
 import { Header } from './components/common';
 import Challenge from './components/Challenge';
+// import sendSms from '../send-sms';
 
 function App() {
   firebase.initializeApp(firebaseConfig);
+  // sendSms()
   return (
     <div className="App">
       <div className="relative overflow-hidden bg-no-repeat bg-cover w-screen h-screen" style={{
