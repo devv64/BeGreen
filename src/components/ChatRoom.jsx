@@ -48,7 +48,7 @@ export default function ChatRoom() {
                             {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg}/>)}
                         </tbody>
                     </table>
-                    <div className='' ref={dummy}></div>
+                    <div className='p-200' ref={dummy}></div>
                 </main>
                 {user ? <form onSubmit={sendMessage}>
                     <input className='' value={formValue} onChange={(e) => {
