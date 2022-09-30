@@ -1,11 +1,10 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
-export default function ChatMessage(props) {
+export default function ChatMessage({key, message, chatRef}) {
     const auth = firebase.auth();
-    console.log(props.message);
     // const messageClass = uid === auth.currentUser.uid ? 'sent' : 'recieved';
-    const { text, uid, photoURL } = props.message
+    const { text, uid, photoURL } = message
 
     return (
         // <div className={`message ${messageClass}`}>

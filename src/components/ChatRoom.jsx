@@ -15,6 +15,8 @@ export default function ChatRoom() {
     const [messages] = useCollectionData(query, { idField: 'id' });
     const [formValue, setFormValue] = useState('')
     const dummy = useRef(null)
+
+
     const sendMessage = async (e) => {
         e.preventDefault();
         const { uid, photoURL } = auth.currentUser;
@@ -27,7 +29,7 @@ export default function ChatRoom() {
         })
 
         setFormValue('');
-        // dummy.current.scrollIntoView({ behavior: 'smooth' });
+        dummy.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     useEffect(() => {
@@ -46,10 +48,16 @@ export default function ChatRoom() {
                             {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg}/>)}
                         </tbody>
                     </table>
-                    <div className='p-200' ref={dummy}></div>
+                    <div className='' ref={dummy}></div>
                 </main>
                 {user ? <form onSubmit={sendMessage}>
-                    <input className='' value={formValue} onChange={(e) => setFormValue(e.target.value)} />
+                    <input className='' value={formValue} onChange={(e) => {
+                            setFormValue(e.target.value)
+                            dummy?.current?.scrollIntoView({
+                                behavior: 'smooth',
+                            });
+                        }
+                    } />
                     <button className='bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' type="submit">Submit</button>
                 </form> : <p>Please Sign in with google to chat</p>}
 
