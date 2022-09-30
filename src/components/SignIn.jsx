@@ -9,14 +9,14 @@ export default function SignIn() {
         const provider = new firebase.auth.GoogleAuthProvider();
         await auth.signInWithPopup(provider);
         const { uid, displayName, email, photoURL } = auth.currentUser;
-        console.log(uid, displayName, email, photoURL)
+
         firestore.collection('users').doc(uid).get().then((docSnapshot) => {
-            console.log('anfkdsnfks', docSnapshot.exists)
             if (!docSnapshot.exists) {
                 firestore.collection('users').doc(uid).set({
                     displayName,
                     email,
-                    photoURL
+                    photoURL,
+                    subscribed: false
                 })
             }
         });

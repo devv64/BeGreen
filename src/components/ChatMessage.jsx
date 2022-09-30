@@ -8,17 +8,15 @@ export default function ChatMessage(props) {
     const { text, uid } = props.message
 
     useEffect(() => {
-        console.log('run')
         const firestore = firebase.firestore();
         (async () => {
             const userRef = await firestore.collection('users').doc(uid).get();
-            console.log(userRef.data());
             setUser(userRef.data());
         })()
-    })
+    }, [uid])
 
     return (
-        <tr className='m-5'>
+        <tr className='m-5 shadow-2xl'>
             <td><img className='w-auto h-auto rounded-full h-12 w-12' src={user.photoURL} alt='Google Profile' /></td>
             <td className='flex flex-col'>
                 <p className='pl-5 text-xl text-white font-extrabold'>{user.displayName}</p>
