@@ -45,7 +45,6 @@ export default function Challenge() {
             setChallenge(data.content)
         })();
     }
-
     return (
         <div className="box">
             <div className="inner">
